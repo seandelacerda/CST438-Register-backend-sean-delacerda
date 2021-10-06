@@ -2,9 +2,8 @@ package com.cst438;
 
 import static org.mockito.ArgumentMatchers.any;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.util.Calendar;
 import java.util.List;
@@ -94,7 +93,7 @@ public class JunitTestStudent {
             found = true;
       }
       
-      assertTrue("student created", found);
+      assertEquals(true, found);
       
       verify(studentRepository).save(any(Student.class));
       verify(studentRepository, times(1)).findByEmail(TEST_STUDENT_EMAIL);
@@ -129,7 +128,7 @@ public class JunitTestStudent {
             found = true;
       }
       
-      assertTrue("student created", found);
+      assertEquals(true, found);
       
       verify(studentRepository).save(any(Student.class));
       
@@ -150,7 +149,7 @@ public class JunitTestStudent {
          holdAdded = true;
       }
       
-      assertTrue("hold added", holdAdded);
+      assertEquals(true, holdAdded);
 
       verify(studentRepository, times(1)).findByEmail(TEST_STUDENT_EMAIL);
    }
@@ -184,7 +183,7 @@ public class JunitTestStudent {
             found = true;
       }
       
-      assertTrue("student created", found);
+      assertEquals(true, found);
       
       verify(studentRepository).save(any(Student.class));
       
@@ -205,7 +204,7 @@ public class JunitTestStudent {
          holdAdded = true;
       }
       
-      assertTrue("hold added", holdAdded);
+      assertEquals(true, holdAdded);
       
       response = mvc.perform(
             MockMvcRequestBuilders
@@ -225,7 +224,7 @@ public class JunitTestStudent {
          holdRemoved = true;
       }
       
-      assertTrue("hold removed", holdRemoved);
+      assertEquals(true, holdRemoved);
 
       verify(studentRepository, times(3)).findByEmail(TEST_STUDENT_EMAIL);
    }
