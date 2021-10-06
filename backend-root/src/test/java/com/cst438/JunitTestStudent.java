@@ -23,7 +23,7 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-import com.cst438.controller.ScheduleController;
+import com.cst438.controller.StudentController;
 import com.cst438.domain.Course;
 import com.cst438.domain.CourseRepository;
 import com.cst438.domain.Enrollment;
@@ -52,7 +52,7 @@ import org.springframework.test.context.ContextConfiguration;
 @ContextConfiguration(classes = { StudentController.class })
 @AutoConfigureMockMvc(addFilters = false)
 @WebMvcTest
-public class JunitTestSchedule {
+public class JunitTestStudent {
 
    static final String URL = "http://localhost:8080";
    public static final int TEST_COURSE_ID = 40442;
@@ -144,7 +144,7 @@ public class JunitTestSchedule {
       
       Boolean holdAdded = false; 
       
-      addedStu = fromJsonString(response.getContentAsString(), Student.class);
+      Student addedStu = fromJsonString(response.getContentAsString(), Student.class);
       
       if (addedStu.getStatusCode() == 1) {
          holdAdded = true;
@@ -199,7 +199,7 @@ public class JunitTestSchedule {
       
       Boolean holdAdded = false; 
       
-      addedStu = fromJsonString(response.getContentAsString(), Student.class);
+      Student addedStu = fromJsonString(response.getContentAsString(), Student.class);
       
       if (addedStu.getStatusCode() == 1) {
          holdAdded = true;
@@ -219,7 +219,7 @@ public class JunitTestSchedule {
       Boolean holdRemoved = false;  
       
       // verify that returned data contains the added course 
-      removedStu = fromJsonString(response.getContentAsString(), Student.class);
+      Student removedStu = fromJsonString(response.getContentAsString(), Student.class);
       
       if (removedStu.getStatusCode() == 0) {
          holdRemoved = true;
