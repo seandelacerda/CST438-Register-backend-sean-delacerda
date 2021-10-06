@@ -2,9 +2,8 @@ package com.cst438;
 
 import static org.mockito.ArgumentMatchers.any;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.util.Calendar;
 import java.util.List;
@@ -23,7 +22,7 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-import com.cst438.controller.ScheduleController;
+import com.cst438.controller.StudentController;
 import com.cst438.domain.Course;
 import com.cst438.domain.CourseRepository;
 import com.cst438.domain.Enrollment;
@@ -52,7 +51,7 @@ import org.springframework.test.context.ContextConfiguration;
 @ContextConfiguration(classes = { StudentController.class })
 @AutoConfigureMockMvc(addFilters = false)
 @WebMvcTest
-public class JunitTestSchedule {
+public class JunitTestStudent {
 
    static final String URL = "http://localhost:8080";
    public static final int TEST_COURSE_ID = 40442;
@@ -94,7 +93,7 @@ public class JunitTestSchedule {
             found = true;
       }
       
-      assertTrue("student created", found);
+      assertEquals(true, found);
       
       verify(studentRepository).save(any(Student.class));
       verify(studentRepository, times(1)).findByEmail(TEST_STUDENT_EMAIL);
@@ -129,7 +128,7 @@ public class JunitTestSchedule {
             found = true;
       }
       
-      assertTrue("student created", found);
+      assertEquals(true, found);
       
       verify(studentRepository).save(any(Student.class));
       
@@ -144,13 +143,13 @@ public class JunitTestSchedule {
       
       Boolean holdAdded = false; 
       
-      addedStu = fromJsonString(response.getContentAsString(), Student.class);
+      Student addedStu = fromJsonString(response.getContentAsString(), Student.class);
       
       if (addedStu.getStatusCode() == 1) {
          holdAdded = true;
       }
       
-      assertTrue("hold added", holdAdded);
+      assertEquals(true, holdAdded);
 
       verify(studentRepository, times(1)).findByEmail(TEST_STUDENT_EMAIL);
    }
@@ -184,7 +183,7 @@ public class JunitTestSchedule {
             found = true;
       }
       
-      assertTrue("student created", found);
+      assertEquals(true, found);
       
       verify(studentRepository).save(any(Student.class));
       
@@ -199,13 +198,13 @@ public class JunitTestSchedule {
       
       Boolean holdAdded = false; 
       
-      addedStu = fromJsonString(response.getContentAsString(), Student.class);
+      Student addedStu = fromJsonString(response.getContentAsString(), Student.class);
       
       if (addedStu.getStatusCode() == 1) {
          holdAdded = true;
       }
       
-      assertTrue("hold added", holdAdded);
+      assertEquals(true, holdAdded);
       
       response = mvc.perform(
             MockMvcRequestBuilders
@@ -219,13 +218,13 @@ public class JunitTestSchedule {
       Boolean holdRemoved = false;  
       
       // verify that returned data contains the added course 
-      removedStu = fromJsonString(response.getContentAsString(), Student.class);
+      Student removedStu = fromJsonString(response.getContentAsString(), Student.class);
       
       if (removedStu.getStatusCode() == 0) {
          holdRemoved = true;
       }
       
-      assertTrue("hold removed", holdRemoved);
+      assertEquals(true, holdRemoved);
 
       verify(studentRepository, times(3)).findByEmail(TEST_STUDENT_EMAIL);
    }
